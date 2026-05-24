@@ -1,4 +1,6 @@
 ---
+import Analytics from '@vercel/analytics/astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -60,6 +62,7 @@ const {
         reveals.forEach((el) => observer.observe(el));
       });
     </script>
+    <Analytics />
   </body>
 </html>
 
