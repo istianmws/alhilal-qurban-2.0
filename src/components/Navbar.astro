@@ -1,0 +1,213 @@
+---
+const navLinks = [
+  { href: '#beranda', label: 'Beranda' },
+  { href: '#qurban', label: 'Qurban' },
+  { href: '#jadwal', label: 'Jadwal' },
+  { href: '#donasi', label: 'Donasi' },
+  { href: '#galeri', label: 'Galeri' },
+];
+---
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner container">
+    <a href="#beranda" class="navbar__logo">☽ Al-Hilal</a>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="navbar__links" id="navLinks">
+      {navLinks.map(link => (
+        <li><a href={link.href} class="navbar__link">{link.label}</a></li>
+      ))}
+      <li>
+        <a href="#donasi" class="btn btn--primary navbar__cta">Daftar Qurban</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Scroll shadow
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('navbar--scrolled');
+    } else {
+      navbar?.classList.remove('navbar--scrolled');
+    }
+  });
+
+  // Mobile toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    links?.classList.toggle('navbar__links--open');
+    toggle.classList.toggle('navbar__toggle--active');
+  });
+
+  // Close on link click
+  document.querySelectorAll('.navbar__link').forEach(link => {
+    link.addEventListener('click', () => {
+      links?.classList.remove('navbar__links--open');
+      toggle?.classList.remove('navbar__toggle--active');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(250, 246, 239, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(45, 122, 79, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .navbar--scrolled {
+    box-shadow: 0 2px 20px rgba(45, 50, 40, 0.1);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: var(--container-max);
+  }
+
+  .navbar__logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--green-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+  }
+
+  .navbar__link {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--green-primary);
+    border-radius: 1px;
+    transition: width 0.3s ease;
+  }
+
+  .navbar__link:hover {
+    color: var(--green-primary);
+  }
+
+  .navbar__link:hover::after {
+    width: 100%;
+  }
+
+  .navbar__cta {
+    padding: 0.55rem 1.3rem;
+    font-size: 0.82rem;
+  }
+
+  /* Hamburger */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    z-index: 10;
+  }
+
+  .navbar__toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-heading);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .navbar__toggle--active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .navbar__toggle--active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .navbar__toggle--active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  @media (max-width: 600px) {
+    .navbar__toggle {
+      display: flex;
+    }
+
+    .navbar__links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      max-width: 300px;
+      height: 100vh;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 5rem 2rem 2rem;
+      background: var(--bg-card);
+      box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar__links--open {
+      right: 0;
+    }
+
+    .navbar__links li {
+      width: 100%;
+    }
+
+    .navbar__link {
+      display: block;
+      padding: 0.8rem 0;
+      font-size: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar__link::after {
+      display: none;
+    }
+
+    .navbar__cta {
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

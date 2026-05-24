@@ -1,0 +1,134 @@
+---
+/**
+ * Penutup.astro — Section 8: Quote Al-Quran + Footer
+ */
+import IslamicPattern from './IslamicPattern.astro';
+---
+
+<section class="penutup">
+  <IslamicPattern opacity={0.06} color="#ffffff" />
+
+  <div class="container penutup__inner">
+    <!-- Quote Box -->
+    <div class="penutup__quote reveal">
+      <p class="arabic-text penutup__arabic">
+        لَن تَنَالُوا۟ ٱلْبِرَّ حَتَّىٰ تُنفِقُوا۟ مِمَّا تُحِبُّونَ
+      </p>
+      <p class="penutup__translation">
+        "Kamu sekali-kali tidak akan sampai kepada kebajikan (yang sempurna), sebelum kamu menafkahkan sebagian harta yang kamu cintai."
+      </p>
+      <p class="penutup__source">— QS. Ali Imran: 92</p>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="penutup__cta reveal reveal-delay-1">
+      <a href="#donasi" class="btn btn--orange">
+        🐄 Daftar Qurban Sekarang
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="penutup__footer">
+    <div class="container">
+      <p class="penutup__footer-org">☽ Masjid Al-Hilal Donorejo</p>
+      <p class="penutup__footer-text">
+        Ranting Muhammadiyah Donorejo · Program Qurban Idul Adha 1447H
+      </p>
+      <p class="penutup__footer-copy">
+        © 2026 Panitia Qurban Al-Hilal · Dibuat dengan ❤️ untuk umat
+      </p>
+    </div>
+  </footer>
+</section>
+
+<style>
+  .penutup {
+    position: relative;
+    background: linear-gradient(135deg, var(--green-primary), #1a5a36);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .penutup__inner {
+    position: relative;
+    z-index: 1;
+    padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 2rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* Quote Box */
+  .penutup__quote {
+    max-width: 640px;
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .penutup__arabic {
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    text-align: center;
+    direction: rtl;
+  }
+
+  .penutup__translation {
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .penutup__source {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .penutup__footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  .penutup__footer-org {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.4rem;
+  }
+
+  .penutup__footer-text {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .penutup__footer-copy {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .penutup__quote {
+      padding: 1.75rem 1.25rem;
+    }
+
+    .penutup__translation {
+      font-size: 0.92rem;
+    }
+  }
+</style>

@@ -1,0 +1,175 @@
+---
+/**
+ * CaraBerqurban.astro — Section 4: Cara Berqurban (2 kartu)
+ */
+const qurbanOptions = [
+  {
+    emoji: '🐄',
+    title: 'Qurban Sapi',
+    accent: 'green',
+    badgeText: '⚡ Kuota Terbatas',
+    badgeType: 'orange',
+    details: [
+      { label: 'Kapasitas', value: '7 orang / ekor' },
+      { label: 'Estimasi biaya', value: 'Rp 2.500.000 / orang' },
+      { label: 'Jumlah sapi', value: '10 ekor (target)' },
+      { label: 'Status', value: 'Pendaftaran dibuka' },
+    ],
+  },
+  {
+    emoji: '🐑',
+    title: 'Qurban Kambing',
+    accent: 'orange',
+    badgeText: '✓ Tersedia',
+    badgeType: 'green',
+    details: [
+      { label: 'Kapasitas', value: '1 orang / ekor' },
+      { label: 'Estimasi biaya', value: 'Rp 2.800.000 / ekor' },
+      { label: 'Jumlah kambing', value: '13 ekor (target)' },
+      { label: 'Status', value: 'Pendaftaran dibuka' },
+    ],
+  },
+];
+---
+
+<section class="cara" id="qurban">
+  <div class="container">
+    <h2 class="section-title reveal">Pilihan Qurban</h2>
+    <p class="section-subtitle reveal reveal-delay-1">
+      Pilih jenis qurban sesuai kemampuan dan niat Anda
+    </p>
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <div class="cara__grid">
+      {qurbanOptions.map((opt, i) => (
+        <div class={`cara__card card reveal reveal-delay-${i + 1}`}>
+          <div class={`cara__card-top cara__card-top--${opt.accent}`}>
+            <span class="cara__emoji">{opt.emoji}</span>
+            <h3 class="cara__title">{opt.title}</h3>
+            <span class={`badge badge--${opt.badgeType}`}>{opt.badgeText}</span>
+          </div>
+          <div class="cara__details">
+            {opt.details.map((d, j) => (
+              <div class={`cara__row ${j % 2 === 0 ? 'cara__row--alt' : ''}`}>
+                <span class="cara__row-label">{d.label}</span>
+                <span class="cara__row-value">{d.value}</span>
+              </div>
+            ))}
+          </div>
+          <div class="cara__card-bottom">
+            <a href="#donasi" class={`btn btn--${opt.accent === 'green' ? 'primary' : 'orange'} cara__btn`}>
+              Daftar Sekarang
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cara {
+    background: var(--bg-warm);
+    padding: var(--section-padding);
+  }
+
+  .cara__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cara__card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cara__card-top {
+    padding: 2rem 1.75rem 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cara__card-top--green {
+    border-top: 4px solid var(--green-primary);
+  }
+
+  .cara__card-top--orange {
+    border-top: 4px solid var(--orange-primary);
+  }
+
+  .cara__emoji {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .cara__title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--text-heading);
+  }
+
+  .cara__details {
+    flex: 1;
+    padding: 0 1.75rem;
+  }
+
+  .cara__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+
+  .cara__row--alt {
+    background: var(--bg-warm);
+    margin-inline: -0.5rem;
+    padding-inline: 1rem;
+    border-radius: 6px;
+  }
+
+  .cara__row-label {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .cara__row-value {
+    font-weight: 700;
+    color: var(--text-heading);
+    text-align: right;
+  }
+
+  .cara__card-bottom {
+    padding: 1.5rem 1.75rem;
+    text-align: center;
+  }
+
+  .cara__btn {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .cara__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cara__card-top {
+      padding: 1.5rem 1.25rem 1rem;
+    }
+
+    .cara__details {
+      padding: 0 1.25rem;
+    }
+
+    .cara__card-bottom {
+      padding: 1.25rem;
+    }
+  }
+</style>

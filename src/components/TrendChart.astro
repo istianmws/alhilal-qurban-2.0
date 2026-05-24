@@ -1,0 +1,150 @@
+---
+/**
+ * TrendChart.astro — Section 3: Tren Qurban Chart (Chart.js)
+ */
+---
+
+<section class="trend" id="tren">
+  <div class="container">
+    <h2 class="section-title reveal">Tren Qurban 4 Tahun</h2>
+    <p class="section-subtitle reveal reveal-delay-1">
+      Perkembangan jumlah hewan qurban Masjid Al-Hilal dari tahun ke tahun
+    </p>
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <div class="trend__card card reveal reveal-delay-2">
+      <canvas id="trendChart" height="320"></canvas>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('trendChart') as HTMLCanvasElement | null;
+    if (!ctx || typeof Chart === 'undefined') return;
+
+    // Wait for chart.js to be available
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['1444 H', '1445 H', '1446 H', '1447 H'],
+        datasets: [
+          {
+            label: 'Sapi',
+            data: [5, 7, 8, 10],
+            backgroundColor: '#2D7A4F',
+            borderRadius: 6,
+            borderSkipped: false,
+            barPercentage: 0.6,
+            categoryPercentage: 0.65,
+          },
+          {
+            label: 'Kambing',
+            data: [6, 8, 11, 13],
+            backgroundColor: '#E07840',
+            borderRadius: 6,
+            borderSkipped: false,
+            barPercentage: 0.6,
+            categoryPercentage: 0.65,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            align: 'end',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 20,
+              font: {
+                family: "'Plus Jakarta Sans', sans-serif",
+                size: 13,
+                weight: '600',
+              },
+              color: '#4A3728',
+            },
+          },
+          tooltip: {
+            backgroundColor: '#1E1206',
+            titleFont: {
+              family: "'Plus Jakarta Sans', sans-serif",
+              size: 13,
+            },
+            bodyFont: {
+              family: "'Plus Jakarta Sans', sans-serif",
+              size: 12,
+            },
+            padding: 12,
+            cornerRadius: 10,
+            displayColors: true,
+            boxPadding: 4,
+          },
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+            ticks: {
+              font: {
+                family: "'Plus Jakarta Sans', sans-serif",
+                size: 12,
+                weight: '600',
+              },
+              color: '#4A3728',
+            },
+          },
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(45, 122, 79, 0.08)',
+            },
+            ticks: {
+              stepSize: 2,
+              font: {
+                family: "'Plus Jakarta Sans', sans-serif",
+                size: 11,
+              },
+              color: '#9C8070',
+            },
+          },
+        },
+        animation: {
+          duration: 1200,
+          easing: 'easeOutQuart',
+        },
+      },
+    });
+  });
+</script>
+
+<style>
+  .trend {
+    background: var(--bg-base);
+    padding: var(--section-padding);
+  }
+
+  .trend__card {
+    padding: 2rem;
+    border-top: 3px solid var(--green-primary);
+    max-width: 700px;
+    margin-inline: auto;
+    min-height: 360px;
+    position: relative;
+  }
+
+  .trend__card canvas {
+    width: 100% !important;
+  }
+
+  @media (max-width: 600px) {
+    .trend__card {
+      padding: 1.25rem 1rem;
+      min-height: 280px;
+    }
+  }
+</style>

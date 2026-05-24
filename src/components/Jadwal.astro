@@ -1,0 +1,163 @@
+---
+/**
+ * Jadwal.astro — Section 5: Jadwal (Timeline Vertikal)
+ */
+const events = [
+  {
+    emoji: '📋',
+    date: '1 – 30 Mei 2026',
+    title: 'Pendaftaran Qurban',
+    desc: 'Pendaftaran peserta qurban sapi dan kambing dibuka untuk seluruh jamaah.',
+  },
+  {
+    emoji: '💰',
+    date: '1 Mei – 1 Juni 2026',
+    title: 'Pembayaran',
+    desc: 'Pelunasan biaya qurban melalui transfer BSI atau langsung ke panitia.',
+  },
+  {
+    emoji: '🐄',
+    date: '5 Juni 2026',
+    title: 'Pengadaan Hewan',
+    desc: 'Pembelian hewan qurban yang sehat dan memenuhi syarat.',
+  },
+  {
+    emoji: '🔪',
+    date: '7 Juni 2026',
+    title: 'Hari Penyembelihan',
+    desc: 'Penyembelihan hewan qurban setelah Sholat Idul Adha di Masjid Al-Hilal.',
+  },
+  {
+    emoji: '🥩',
+    date: '7 – 8 Juni 2026',
+    title: 'Distribusi Daging',
+    desc: 'Pembagian daging qurban kepada seluruh warga Donorejo dan sekitarnya.',
+  },
+];
+---
+
+<section class="jadwal" id="jadwal">
+  <div class="container">
+    <h2 class="section-title reveal">Jadwal Kegiatan</h2>
+    <p class="section-subtitle reveal reveal-delay-1">
+      Rangkaian kegiatan program qurban Idul Adha 1447H
+    </p>
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <div class="jadwal__timeline">
+      {events.map((evt, i) => (
+        <div class={`jadwal__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <div class="jadwal__dot">
+            <span class="jadwal__dot-emoji">{evt.emoji}</span>
+          </div>
+          <div class="jadwal__card card">
+            <span class="badge badge--orange jadwal__date">{evt.date}</span>
+            <h3 class="jadwal__title">{evt.title}</h3>
+            <p class="jadwal__desc">{evt.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .jadwal {
+    background: var(--bg-base);
+    padding: var(--section-padding);
+  }
+
+  .jadwal__timeline {
+    position: relative;
+    max-width: 640px;
+    margin-inline: auto;
+    padding-left: 3rem;
+  }
+
+  /* Vertical connector line */
+  .jadwal__timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--green-light) 0,
+      var(--green-light) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    opacity: 0.35;
+  }
+
+  .jadwal__item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .jadwal__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .jadwal__dot {
+    position: absolute;
+    left: -3rem;
+    top: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .jadwal__dot-emoji {
+    font-size: 1rem;
+  }
+
+  .jadwal__card {
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--green-primary);
+  }
+
+  .jadwal__date {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-size: 0.72rem;
+  }
+
+  .jadwal__title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-heading);
+    margin-bottom: 0.35rem;
+  }
+
+  .jadwal__desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .jadwal__timeline {
+      padding-left: 2.5rem;
+    }
+
+    .jadwal__dot {
+      left: -2.5rem;
+      width: 30px;
+      height: 30px;
+    }
+
+    .jadwal__card {
+      padding: 1rem 1.15rem;
+    }
+  }
+</style>

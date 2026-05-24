@@ -1,0 +1,47 @@
+---
+/**
+ * IslamicPattern.astro
+ * Reusable SVG Islamic pattern (8-pointed star) as background texture.
+ */
+interface Props {
+  opacity?: number;
+  color?: string;
+}
+
+const { opacity = 0.05, color = '#2D7A4F' } = Astro.props;
+---
+
+<div class="islamic-pattern" style={`--pattern-opacity: ${opacity}; --pattern-color: ${color};`}>
+  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="islamicStar" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <!-- 8-pointed star -->
+        <polygon
+          points="30,4 34.5,20 50,11 39,25.5 56,30 39,34.5 50,49 34.5,40 30,56 25.5,40 10,49 21,34.5 4,30 21,25.5 10,11 25.5,20"
+          fill="currentColor"
+          opacity="0.6"
+        />
+        <!-- Small diamond ornament -->
+        <rect x="28" y="28" width="4" height="4" transform="rotate(45 30 30)" fill="currentColor" opacity="0.3" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#islamicStar)" />
+  </svg>
+</div>
+
+<style>
+  .islamic-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    color: var(--pattern-color);
+    opacity: var(--pattern-opacity);
+  }
+
+  .islamic-pattern svg {
+    width: 100%;
+    height: 100%;
+  }
+</style>

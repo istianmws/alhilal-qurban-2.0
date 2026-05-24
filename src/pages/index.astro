@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import TrendChart from '../components/TrendChart.astro';
+import CaraBerqurban from '../components/CaraBerqurban.astro';
+import Jadwal from '../components/Jadwal.astro';
+import Donasi from '../components/Donasi.astro';
+import Galeri from '../components/Galeri.astro';
+import Penutup from '../components/Penutup.astro';
+---
+
+<Layout
+  title="Qurban Idul Adha 1447H — Masjid Al-Hilal Donorejo"
+  description="Berkurban, Bahagiakan Sesama. Program Qurban Idul Adha 1447H Masjid Al-Hilal, Ranting Muhammadiyah Donorejo. Daftar qurban sapi & kambing sekarang."
+>
+  <Navbar />
+  <main>
+    <Hero />
+    <Stats />
+    <TrendChart />
+    <CaraBerqurban />
+    <Jadwal />
+    <Donasi />
+    <Galeri />
+    <Penutup />
+  </main>
+</Layout>

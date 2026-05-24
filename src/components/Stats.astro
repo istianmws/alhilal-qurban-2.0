@@ -1,0 +1,192 @@
+---
+/**
+ * Stats.astro — Section 2: Stats Besar + Milestone Banner
+ */
+const stats = [
+  {
+    emoji: '🐄',
+    label: 'Sapi',
+    value: 10,
+    accent: 'green',
+    description: 'ekor disembelih tahun ini',
+  },
+  {
+    emoji: '🐑',
+    label: 'Kambing',
+    value: 13,
+    accent: 'orange',
+    description: 'ekor disembelih tahun ini',
+  },
+];
+---
+
+<section class="stats" id="stats">
+  <div class="container">
+    <h2 class="section-title reveal">Pencapaian Qurban</h2>
+    <p class="section-subtitle reveal reveal-delay-1">
+      Alhamdulillah, semangat berqurban jamaah Al-Hilal terus meningkat setiap tahun
+    </p>
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <div class="stats__grid">
+      {stats.map((stat, i) => (
+        <div class={`stats__card stats__card--${stat.accent} card reveal reveal-delay-${i + 1}`}>
+          <div class="stats__icon">{stat.emoji}</div>
+          <div class="stats__number" data-target={stat.value}>0</div>
+          <div class="stats__label">{stat.label}</div>
+          <div class="stats__desc">{stat.description}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Milestone Banner -->
+    <div class="stats__milestone reveal reveal-delay-3">
+      <div class="stats__milestone-icon">🏆</div>
+      <div class="stats__milestone-text">
+        <strong>4 Tahun Berturut-turut</strong> — Konsisten menyelenggarakan program qurban bersama untuk warga Donorejo dan sekitarnya
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Counter animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stats__number');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.target || '0');
+            let current = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              el.textContent = Math.floor(current).toString();
+            }, 16);
+
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((c) => observer.observe(c));
+  }
+
+  document.addEventListener('DOMContentLoaded', animateCounters);
+</script>
+
+<style>
+  .stats {
+    background: var(--bg-warm);
+    padding: var(--section-padding);
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats__card {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats__card--green {
+    border-left: 4px solid var(--green-primary);
+  }
+
+  .stats__card--orange {
+    border-left: 4px solid var(--orange-primary);
+  }
+
+  .stats__icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .stats__number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stats__card--green .stats__number {
+    color: var(--green-primary);
+  }
+
+  .stats__card--orange .stats__number {
+    color: var(--orange-primary);
+  }
+
+  .stats__label {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-heading);
+    margin-bottom: 0.35rem;
+  }
+
+  .stats__desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  /* Milestone Banner */
+  .stats__milestone {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, var(--orange-pale), var(--green-pale));
+    border: 1px solid rgba(196, 144, 42, 0.25);
+    border-radius: var(--radius-md);
+  }
+
+  .stats__milestone-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .stats__milestone-text {
+    font-size: 0.92rem;
+    color: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .stats__milestone-text strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  @media (max-width: 600px) {
+    .stats__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats__card {
+      padding: 2rem 1.5rem;
+    }
+
+    .stats__milestone {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.25rem 1.5rem;
+    }
+  }
+</style>
