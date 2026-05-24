@@ -1,0 +1,856 @@
+---
+/**
+ * PesertaQurban.astro — Section: Daftar Peserta Qurban
+ * List calon mudhohi Masjid Al-Hilal 1447H
+ */
+
+const sapiGroups = [
+  {
+    id: 'A',
+    label: 'SAPI Paket 1',
+    price: 'Rp 5.000.000',
+    unit: 'Sapi ke-1',
+    members: [
+      'Kel Bp Shomadi',
+      'Kel Sdr Nabil Muzzaki Kalimantan',
+      'Kel Ibu Sri Eni Kalimantan',
+      'Kel Ibu Purwanti Kalimantan',
+      'Kel Bp Boymin',
+      'Kel Ibu Isrokiyah Kalimantan',
+      'Kel Bp Ahmat Yani Kalimantan',
+    ],
+  },
+  {
+    id: 'B',
+    label: 'SAPI Paket 2',
+    price: 'Rp 4.000.000',
+    unit: 'Sapi ke-2',
+    members: [
+      'Kel Bp Hariyanto Kb',
+      'Kel Bp Sumardi',
+      'Kel Sdr Satrio Gilang',
+      'Kel Ibu Jaziroh Kd',
+      'Kel Bp Mashari',
+      'Kel Sdr Zaenal Mustofa Kd',
+      'Kel Bp Isrofi',
+    ],
+  },
+  {
+    id: 'C',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-3',
+    members: [
+      'Kel Bp Mujianto',
+      'Kel Ibu Sumiyati Kb',
+      'Kel Sdri Prissianingsih',
+      'Kel Ibu Yusmitri',
+      'Kel Ibu Mu\'inah Kb',
+      'Kel Ibu Suprihati Kb',
+      'Kel Ibu Khudfiyah',
+    ],
+  },
+  {
+    id: 'D',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-4',
+    members: [
+      'Kel Bp Lovita Ivan',
+      'Kel Bp Torifa',
+      'Kel Bp Yusuf Kd',
+      'Kel Ibu Asiyah Kd',
+      'Kel Sdri Felicia Kd',
+      'Kel Sdr Rakhil Alfiansyah Kd',
+      'Kel Sdri Mafazza Sholidah',
+    ],
+  },
+  {
+    id: 'E',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-5',
+    members: [
+      'Kel Bp Harmanto Kb',
+      'Kel Ibu Mundaekah Kd',
+      'Kel Ibu Hani Nursesanti',
+      'Kel Sdr Thoriq Al-Azar Kd',
+      'Kel Bp Ali Kaliabu',
+      'Kel Ibu Intiyah Kd',
+      'Kel Bp Yanto Kd',
+    ],
+  },
+  {
+    id: 'F',
+    label: 'SAPI Paket 2',
+    price: 'Rp 4.000.000',
+    unit: 'Sapi ke-6',
+    members: [
+      'Kel Bp Khairan Mosa Rahmaninof',
+      'Kel Sdr Janeram Fawwaz Gemati',
+      'Kel Ibu Sri Suhud Kd',
+      'Kel Ibu Nuryati Kd',
+      'Kel Bp Muhtamam',
+      'Kel Ibu Aslikah Kd',
+      'Kel Ibu R. Andriani binti R. Hendi Suwandi',
+    ],
+  },
+  {
+    id: 'G',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-7',
+    members: [
+      'Kel Bp Nova Kb',
+      'Kel Mas Bowo Kd',
+      'Kel Ibu Khotijah Kb',
+      'Kel Ibu Istiqomah Kd',
+      'Kel Ibu Sofiyati',
+      'Kel Bp Supeno',
+      'Kel Ibu Susilowati Kb',
+    ],
+  },
+  {
+    id: 'H',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-8',
+    members: [
+      'Kel Ibu Dewi Masitoh Kb',
+      'Kel Sdri Febriyani Putri Ningsih',
+      'Kel Ibu Nikmah',
+      'Kel Ibu Romzah Kdg',
+      'Kel Ibu Suwaibah Kd',
+      'Kel Bp Ismail',
+      'Kel Ibu Bariyah Kb',
+    ],
+  },
+  {
+    id: 'I',
+    label: 'SAPI Paket 3',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-9',
+    members: [
+      'Kel Ibu Dyah Febriana Sari Kd',
+      'Kel Ibu Rahmi Aulia Adani Kb',
+      'Kel Ibu Suci Kws',
+      'Kel Ibu Siti Zulaikoh',
+      'Kel Bp Anshor Kb',
+      'Kel Bp Haryadi Kd',
+      'Kel Mz Sutikno Kd',
+    ],
+  },
+  {
+    id: 'J',
+    label: 'SAPI',
+    price: '',
+    unit: 'Sapi ke-10',
+    members: [
+      'Kel Ibu Jariyah / Ibu Ismail Kd',
+      'Kel Ibu Islakah Kd',
+      'Kel Bp Anwar As Sidiqi',
+      'Kel Bp Rowawi Kb',
+      'Kel Bp Fatori Kb',
+      'Kel Sdri Faiza Alya Aziza Kd',
+      'Kel Bp Ahmad Ruslan',
+    ],
+  },
+];
+
+const kambingMembers = [
+  'Ibu Nyai Iin (Kws)',
+  'Ibu Istiqomah (Kb)',
+  'Ibu Siti Khofiyah',
+  'Bp Muhammad Azis (Kb)',
+  'Sdri Dista Kb',
+  'Sdri Astrid Kws',
+  'Ibu Tarmia Kdg',
+  'Bp Ilyasin Kalimantan',
+  'Bp Sudarno Kb',
+  'Ibu Susnowiyah Kb',
+  'Sdri Anneira Kd',
+  'Ibu Nita Kb',
+  'Sdr Eka Setyabudi',
+  'Ibu Tini Kd (Pak Mul)',
+];
+
+const totalSapi = sapiGroups.length;
+const totalPesertaSapi = sapiGroups.reduce((sum, g) => sum + g.members.length, 0);
+const totalKambing = kambingMembers.length;
+const totalPeserta = totalPesertaSapi + totalKambing;
+---
+
+<section class="peserta" id="peserta">
+  <div class="container">
+    <!-- Header -->
+    <div class="peserta__header reveal">
+      <span class="badge badge--green">🐄 Ajakan Qurban 🐏</span>
+      <h2 class="section-title">Daftar Peserta Qurban</h2>
+      <p class="peserta__ayat">
+        <em>"Maka dirikanlah salat karena Tuhanmu; dan berqurbanlah."</em>
+      </p>
+      <p class="peserta__ayat-ref">(Q.S Al-Kautsar : 2)</p>
+      <p class="section-subtitle">
+        Yuk Qurban di Masjid Al Hilal — Berikut adalah list calon mudhohi di Masjid Al Hilal 1447 H
+      </p>
+    </div>
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <!-- Summary Stats -->
+    <div class="peserta__stats reveal">
+      <div class="peserta__stat">
+        <span class="peserta__stat-icon">🐄</span>
+        <div class="peserta__stat-info">
+          <span class="peserta__stat-number" data-count={totalSapi}>{totalSapi}</span>
+          <span class="peserta__stat-label">Ekor Sapi</span>
+        </div>
+      </div>
+      <div class="peserta__stat-divider"></div>
+      <div class="peserta__stat">
+        <span class="peserta__stat-icon">🐐</span>
+        <div class="peserta__stat-info">
+          <span class="peserta__stat-number" data-count={totalKambing}>{totalKambing}</span>
+          <span class="peserta__stat-label">Ekor Kambing</span>
+        </div>
+      </div>
+      <div class="peserta__stat-divider"></div>
+      <div class="peserta__stat">
+        <span class="peserta__stat-icon">👥</span>
+        <div class="peserta__stat-info">
+          <span class="peserta__stat-number" data-count={totalPeserta}>{totalPeserta}</span>
+          <span class="peserta__stat-label">Total Peserta</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="peserta__controls reveal">
+      <div class="peserta__search">
+        <svg class="peserta__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="pesertaSearch" 
+          class="peserta__search-input" 
+          placeholder="Cari nama peserta..." 
+          autocomplete="off"
+        />
+      </div>
+      <div class="peserta__filter-group">
+        <button class="peserta__filter-btn peserta__filter-btn--active" data-filter="all">Semua</button>
+        <button class="peserta__filter-btn" data-filter="sapi">🐄 Sapi</button>
+        <button class="peserta__filter-btn" data-filter="kambing">🐐 Kambing</button>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="peserta__no-results" id="pesertaNoResults" style="display:none;">
+      <span class="peserta__no-results-icon">🔍</span>
+      <p>Tidak ada peserta yang ditemukan</p>
+    </div>
+
+    <!-- Sapi Cards Grid -->
+    <div class="peserta__grid" id="pesertaGrid">
+      {sapiGroups.map((group, idx) => (
+        <div class="peserta__card card reveal" data-type="sapi" style={`animation-delay: ${idx * 0.05}s`}>
+          <div class="peserta__card-top">
+            <div class="peserta__card-badge">
+              <span class="peserta__card-letter">{group.id}</span>
+            </div>
+            <div class="peserta__card-info">
+              <h3 class="peserta__card-title">🐄 {group.label}</h3>
+              <span class="peserta__card-unit">{group.unit}</span>
+            </div>
+            {group.price && (
+              <span class="peserta__card-price">{group.price}</span>
+            )}
+          </div>
+          <div class="peserta__card-divider"></div>
+          <ol class="peserta__member-list">
+            {group.members.map((member) => (
+              <li class="peserta__member">
+                <span class="peserta__member-check">✅</span>
+                <span class="peserta__member-name">{member}</span>
+              </li>
+            ))}
+          </ol>
+          <div class="peserta__card-footer">
+            <span class="peserta__card-count">{group.members.length}/7 Peserta</span>
+            <div class="peserta__progress">
+              <div class="peserta__progress-bar" style={`width: ${(group.members.length / 7) * 100}%`}></div>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Kambing Card -->
+      <div class="peserta__card peserta__card--kambing card reveal" data-type="kambing">
+        <div class="peserta__card-top">
+          <div class="peserta__card-badge peserta__card-badge--kambing">
+            <span class="peserta__card-letter">🐐</span>
+          </div>
+          <div class="peserta__card-info">
+            <h3 class="peserta__card-title">🐐 KAMBING</h3>
+            <span class="peserta__card-unit">Kambing Individual</span>
+          </div>
+          <span class="peserta__card-count-badge">{kambingMembers.length} peserta</span>
+        </div>
+        <div class="peserta__card-divider peserta__card-divider--kambing"></div>
+        <ol class="peserta__member-list">
+          {kambingMembers.map((member) => (
+            <li class="peserta__member">
+              <span class="peserta__member-check">✅</span>
+              <span class="peserta__member-name">{member}</span>
+            </li>
+          ))}
+        </ol>
+        <div class="peserta__card-footer peserta__card-footer--kambing">
+          <span class="peserta__card-count">{kambingMembers.length}+ Peserta Kambing</span>
+          <span class="peserta__dst-note">dan seterusnya...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="peserta__cta reveal">
+      <p class="peserta__cta-text">Tertarik untuk ikut berqurban?</p>
+      <a href="#donasi" class="btn btn--primary">
+        <span>🐄</span> Daftar Qurban Sekarang
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Search & Filter functionality
+  const searchInput = document.getElementById('pesertaSearch') as HTMLInputElement;
+  const filterBtns = document.querySelectorAll('.peserta__filter-btn');
+  const grid = document.getElementById('pesertaGrid');
+  const noResults = document.getElementById('pesertaNoResults');
+  let currentFilter = 'all';
+
+  function applyFilters() {
+    if (!grid || !noResults) return;
+    const query = searchInput?.value.toLowerCase().trim() || '';
+    const cards = grid.querySelectorAll('.peserta__card') as NodeListOf<HTMLElement>;
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const type = card.dataset.type || '';
+      const matchesFilter = currentFilter === 'all' || type === currentFilter;
+
+      if (!matchesFilter) {
+        card.style.display = 'none';
+        return;
+      }
+
+      if (!query) {
+        card.style.display = '';
+        visibleCount++;
+        // Reset all members visibility
+        card.querySelectorAll('.peserta__member').forEach(m => {
+          (m as HTMLElement).style.display = '';
+        });
+        return;
+      }
+
+      // Check individual members
+      const members = card.querySelectorAll('.peserta__member');
+      let cardHasMatch = false;
+      members.forEach(m => {
+        const name = m.querySelector('.peserta__member-name')?.textContent?.toLowerCase() || '';
+        if (name.includes(query)) {
+          (m as HTMLElement).style.display = '';
+          cardHasMatch = true;
+        } else {
+          (m as HTMLElement).style.display = 'none';
+        }
+      });
+
+      // Also match card title
+      const title = card.querySelector('.peserta__card-title')?.textContent?.toLowerCase() || '';
+      if (title.includes(query)) {
+        cardHasMatch = true;
+        members.forEach(m => {
+          (m as HTMLElement).style.display = '';
+        });
+      }
+
+      card.style.display = cardHasMatch ? '' : 'none';
+      if (cardHasMatch) visibleCount++;
+    });
+
+    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('peserta__filter-btn--active'));
+      btn.classList.add('peserta__filter-btn--active');
+      currentFilter = (btn as HTMLElement).dataset.filter || 'all';
+      applyFilters();
+    });
+  });
+</script>
+
+<style>
+  .peserta {
+    padding: var(--section-padding);
+    background: var(--bg-base);
+    position: relative;
+  }
+
+  .peserta__header {
+    text-align: center;
+  }
+
+  .peserta__header .badge {
+    margin-bottom: 1rem;
+  }
+
+  .peserta__ayat {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    color: var(--green-primary);
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .peserta__ayat-ref {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Stats Summary */
+  .peserta__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .peserta__stat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .peserta__stat-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .peserta__stat-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .peserta__stat-number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--green-primary);
+    line-height: 1.1;
+  }
+
+  .peserta__stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .peserta__stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* Search & Filter */
+  .peserta__controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .peserta__search {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .peserta__search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .peserta__search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-full);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    background: var(--bg-card);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .peserta__search-input:focus {
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 4px rgba(45, 122, 79, 0.1);
+  }
+
+  .peserta__search-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .peserta__filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .peserta__filter-btn {
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-body);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .peserta__filter-btn:hover {
+    background: var(--green-pale);
+    color: var(--green-primary);
+    border-color: var(--green-primary);
+  }
+
+  .peserta__filter-btn--active {
+    background: var(--green-primary);
+    color: #fff;
+    border-color: var(--green-primary);
+  }
+
+  .peserta__filter-btn--active:hover {
+    background: var(--green-light);
+    color: #fff;
+  }
+
+  /* No Results */
+  .peserta__no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .peserta__no-results-icon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+  }
+
+  /* Grid */
+  .peserta__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Card */
+  .peserta__card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .peserta__card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .peserta__card-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(45, 122, 79, 0.3);
+  }
+
+  .peserta__card-badge--kambing {
+    background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+    box-shadow: 0 4px 12px rgba(224, 120, 64, 0.3);
+  }
+
+  .peserta__card-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .peserta__card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .peserta__card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-heading);
+    line-height: 1.3;
+  }
+
+  .peserta__card-unit {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .peserta__card-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--green-primary);
+    background: var(--green-pale);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .peserta__card-count-badge {
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--orange-primary);
+    background: var(--orange-pale);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .peserta__card-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-primary), transparent);
+    opacity: 0.15;
+  }
+
+  .peserta__card-divider--kambing {
+    background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
+  }
+
+  /* Member List */
+  .peserta__member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    counter-reset: member;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .peserta__member {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    counter-increment: member;
+  }
+
+  .peserta__member:hover {
+    background: var(--green-pale);
+  }
+
+  .peserta__card--kambing .peserta__member:hover {
+    background: var(--orange-pale);
+  }
+
+  .peserta__member::before {
+    content: counter(member) ".";
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    min-width: 22px;
+    flex-shrink: 0;
+  }
+
+  .peserta__member-check {
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .peserta__member-name {
+    font-size: 0.88rem;
+    color: var(--text-body);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Card Footer */
+  .peserta__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .peserta__card-count {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--green-primary);
+    white-space: nowrap;
+  }
+
+  .peserta__card-footer--kambing .peserta__card-count {
+    color: var(--orange-primary);
+  }
+
+  .peserta__dst-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .peserta__progress {
+    flex: 1;
+    height: 6px;
+    background: var(--green-pale);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .peserta__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-primary), var(--green-light));
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  /* Kambing Card Span Full Width */
+  .peserta__card--kambing {
+    grid-column: 1 / -1;
+  }
+
+  .peserta__card--kambing .peserta__member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.3rem;
+  }
+
+  /* CTA */
+  .peserta__cta {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-warm);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+  }
+
+  .peserta__cta-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .peserta__grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .peserta__card--kambing .peserta__member-list {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .peserta__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .peserta__stats {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .peserta__stat-divider {
+      width: 100%;
+      height: 1px;
+    }
+
+    .peserta__controls {
+      flex-direction: column;
+    }
+
+    .peserta__search {
+      width: 100%;
+    }
+
+    .peserta__filter-group {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .peserta__card {
+      padding: 1.25rem;
+    }
+
+    .peserta__card-top {
+      flex-wrap: wrap;
+    }
+
+    .peserta__card-price {
+      margin-left: auto;
+    }
+
+    .peserta__card--kambing .peserta__member-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
