@@ -35,6 +35,9 @@ import IslamicPattern from './IslamicPattern.astro';
       <p class="penutup__footer-text">
         Ranting Muhammadiyah Donorejo · Program Qurban Idul Adha 1447H
       </p>
+      <p class="penutup__footer-archive">
+        <a href="/qurban-1446h" class="penutup__archive-link">📜 Lihat Rekap Qurban 1446H</a>
+      </p>
       <p class="penutup__footer-copy">
         © 2026 Panitia Qurban Al-Hilal · Dibuat dengan ❤️ untuk umat
       </p>
@@ -115,6 +118,32 @@ import IslamicPattern from './IslamicPattern.astro';
     color: rgba(255, 255, 255, 0.55);
     font-size: 0.82rem;
     margin-bottom: 0.75rem;
+  }
+
+  .penutup__footer-archive {
+    margin-bottom: 0.75rem;
+  }
+
+  .penutup__archive-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .penutup__archive-link:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border-color: rgba(196, 144, 42, 0.4);
+    transform: scale(1.03);
   }
 
   .penutup__footer-copy {

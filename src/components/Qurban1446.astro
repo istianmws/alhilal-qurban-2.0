@@ -1,0 +1,1300 @@
+---
+/**
+ * Qurban1446.astro — Rekap Peserta Qurban 1446H (Tahun Lalu)
+ * Full-page component showing historical qurban data
+ */
+
+const sapiGroups = [
+  {
+    id: 'A',
+    label: 'SAPI Paket 3',
+    price: 'Rp 5.000.000',
+    unit: 'Sapi ke-1',
+    members: [
+      'Kel Bp Shomadi',
+      'Kel Bp. Anwar Assidiqi',
+      'Kel Bp. Ahmad Yani',
+      'Kel Ibu. Isrokiyah',
+      'Kel Bp. Yusmanto / Jayus',
+      'Kel Ibu Siti Khofiyah',
+      'Kel Bp Asror Kd',
+    ],
+  },
+  {
+    id: 'B',
+    label: 'SAPI Paket 2',
+    price: 'Rp 4.000.000',
+    unit: 'Sapi ke-2',
+    members: [
+      'Kel Ibu Siti Parwati',
+      'Kel Sdri Elisa Zahrotun',
+      'Kel Bp Muhtamam',
+      'Kel Sdr Akrom Fatih Juman',
+      'Kel Ibu Uswatun Khasanah (Irwan Bachri)',
+      'Kel Ibu Sri Warsini Kd',
+      'Kel Bp Isrofi',
+    ],
+  },
+  {
+    id: 'C',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-3',
+    members: [
+      'Kel Bp Kusni',
+      'Kel Ibu Barokah Kd',
+      'Kel Bp Wili Kd',
+      'Kel Ibu Siti Khotijah',
+      'Kel Ibu Ndariyah (Almh)',
+      'Kel Bp Rohmat Kd',
+      'Kel Bp Adi Resti',
+    ],
+  },
+  {
+    id: 'D',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-4',
+    members: [
+      'Kel Bp Samsudin (Alm)',
+      'Kel Ibu Kasimah (Almh)',
+      'Kel Ibu Erwik',
+      'Kel Bp Muhzen',
+      'Kel Ibu Sutamah Kb',
+      'Kel Bp Muh Zamari',
+      'Kel Ibu Islakah',
+    ],
+  },
+  {
+    id: 'E',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-5',
+    members: [
+      'Kel Ibu Sarmonah Kd',
+      'Kel Bp Ismail',
+      'Kel Ibu Jariyah',
+      'Kel Sdr Wahyu',
+      'Kel Ibu Suprihati Kb',
+      'Kel Ibu Mutmainah',
+      'Kel Bp Komari',
+    ],
+  },
+  {
+    id: 'F',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-6',
+    members: [
+      'Kel Bp Solikun Kd',
+      'Kel Sdri Rofiatul Mu\'nisah Kd',
+      'Kel Ibu Fitria Iswanti',
+      'Kel Bp Bayan Yunus',
+      'Kel Ibu Bayan Kholifah',
+      'Kel Ibu Siti Kholifah',
+      'Kel Bp. Zaenuri',
+    ],
+  },
+  {
+    id: 'G',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-7',
+    members: [
+      'Kel Mbah Muhri (Alm)',
+      'Kel Mbah Aminah',
+      'Kel Bp Irfai',
+      'Kel Bp Farid Huda',
+      'Kel Ibu Wati Kd',
+      'Kel Bp Suwandi',
+      'Kel Bp Ali Kaliabu',
+    ],
+  },
+  {
+    id: 'H',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-8',
+    members: [
+      'Kel Ibu Asiyah Kd',
+      'Kel Ibu Asiyah Kd',
+      'Kel Ibu Asiyah Kd',
+      'Kel Bp Mahfud (Alm)',
+      'Kel Bp Mahfud (Alm)',
+      'Kel Bp Yusuf Kd',
+      'Kel Bp Mahmudi (Alm)',
+    ],
+  },
+  {
+    id: 'I',
+    label: 'SAPI Paket 1',
+    price: 'Rp 3.500.000',
+    unit: 'Sapi ke-9',
+    members: [
+      'Kel Bp Damsuki',
+      'Kel Ibu Triwis (Almh)',
+      'Kel Ibu Asriyah Kd',
+      'Kel Bp Kaolan (Alm)',
+      'Kel Bp Anshori',
+      'Kel Bp Kamari (Alm)',
+      'Kel Ibu Atik Kd',
+    ],
+  },
+  {
+    id: 'J',
+    label: 'SAPI Paket Keluarga',
+    price: '',
+    unit: 'Sapi ke-10',
+    members: [
+      'Kel Bp Suroto',
+      'Kel Ibu Maryatun',
+      'Kel Mbah Marliyah',
+      'Kel Sdr Rizal Maulana',
+      'Kel Ibu Esti Umayah',
+      'Kel Ibu Ismi Nurul Fatimah',
+      'Kel Sdri Fitri Noviyanti',
+    ],
+  },
+  {
+    id: 'K',
+    label: 'SAPI Paket Keluarga',
+    price: '',
+    unit: 'Sapi ke-11',
+    members: [
+      'Kel Bp Sumardi Kd',
+      'Kel Ibu Zaimah Kd',
+      'Kel Bp Asmuni Kd',
+      'Kel Ibu Permi Kd',
+      'Kel Ibu Fatkhul Hidayah Kd',
+      'Kel Ibu Atmi Kd',
+      'Kel Ibu Kopsah',
+    ],
+  },
+  {
+    id: 'L',
+    label: 'SAPI Paket 2',
+    price: 'Rp 4.000.000',
+    unit: 'Sapi ke-12',
+    members: [
+      'Kel Bp Kuat (Bapak Pak Muslih)',
+      'Kel Ibu Sumidah (Ibu Pak Muslih)',
+      'Kel Ibu Yusmitri',
+      'Kel Ibu Aslikah',
+      'Kel Ibu Sari',
+      'Kel Bp Sumali',
+      'Kel Ibu Sri Wahyuni',
+    ],
+  },
+];
+
+const kambingMembers = [
+  'Kel Sdr Andri Kd',
+  'Kel Ibu Binti Kd',
+  'Kel Bp Wahyono Kb',
+  'Kel Sdri Fishena Hanum Anggraini',
+  'Kel Sdr Afifudin',
+  'Kel Bp Gufron Kd',
+];
+
+const totalSapi = sapiGroups.length;
+const totalPesertaSapi = sapiGroups.reduce((sum, g) => sum + g.members.length, 0);
+const totalKambing = kambingMembers.length;
+const totalPeserta = totalPesertaSapi + totalKambing;
+
+const contacts = [
+  { name: 'Fella', phone: '+62 822-2135-6237' },
+  { name: 'Erla', phone: '+62 858-0367-7052' },
+  { name: 'Dafi', phone: '+62 822-9951-4390' },
+];
+---
+
+<section class="qurban1446">
+  <div class="container">
+    <!-- Hero Banner -->
+    <div class="q46__hero reveal">
+      <div class="q46__hero-badge">
+        <span class="q46__hero-year-label">Rekap Tahun Lalu</span>
+      </div>
+      <div class="q46__hero-content">
+        <span class="badge badge--gold">📜 Arsip Qurban 1446H</span>
+        <h1 class="q46__title">
+          <span class="q46__title-emoji">🐄</span>
+          Ajakan Qurban
+          <span class="q46__title-emoji">🐏</span>
+        </h1>
+        <p class="q46__subtitle">Yuk Qurban di Masjid Al Hilal</p>
+        <div class="q46__hadits">
+          <p class="q46__hadits-text">
+            <em>"Barangsiapa yang memiliki kelapangan (rizki) dan tidak berqurban, maka janganlah ia mendekati tempat shalat kami."</em>
+          </p>
+          <p class="q46__hadits-source">(HR. Ibnu Majah · Syaikh Al Albani: Hasan)</p>
+        </div>
+      </div>
+      <div class="q46__hero-year">1446H</div>
+    </div>
+
+    <div class="ornamental-divider reveal"><span class="diamond"></span></div>
+
+    <!-- Summary Stats -->
+    <div class="q46__stats reveal">
+      <div class="q46__stat">
+        <span class="q46__stat-icon">🐄</span>
+        <div class="q46__stat-info">
+          <span class="q46__stat-number">{totalSapi}</span>
+          <span class="q46__stat-label">Ekor Sapi</span>
+        </div>
+      </div>
+      <div class="q46__stat-divider"></div>
+      <div class="q46__stat">
+        <span class="q46__stat-icon">🐐</span>
+        <div class="q46__stat-info">
+          <span class="q46__stat-number">{totalKambing}</span>
+          <span class="q46__stat-label">Ekor Kambing</span>
+        </div>
+      </div>
+      <div class="q46__stat-divider"></div>
+      <div class="q46__stat">
+        <span class="q46__stat-icon">👥</span>
+        <div class="q46__stat-info">
+          <span class="q46__stat-number">{totalPeserta}</span>
+          <span class="q46__stat-label">Total Peserta</span>
+        </div>
+      </div>
+      <div class="q46__stat-divider"></div>
+      <div class="q46__stat">
+        <span class="q46__stat-icon">✅</span>
+        <div class="q46__stat-info">
+          <span class="q46__stat-number">100%</span>
+          <span class="q46__stat-label">Terlaksana</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="q46__controls reveal">
+      <div class="q46__search">
+        <svg class="q46__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+          type="text"
+          id="q46Search"
+          class="q46__search-input"
+          placeholder="Cari nama peserta 1446H..."
+          autocomplete="off"
+        />
+      </div>
+      <div class="q46__filter-group">
+        <button class="q46__filter-btn q46__filter-btn--active" data-filter="all">Semua</button>
+        <button class="q46__filter-btn" data-filter="sapi">🐄 Sapi</button>
+        <button class="q46__filter-btn" data-filter="kambing">🐐 Kambing</button>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="q46__no-results" id="q46NoResults" style="display:none;">
+      <span class="q46__no-results-icon">🔍</span>
+      <p>Tidak ada peserta yang ditemukan</p>
+    </div>
+
+    <!-- Sapi Cards Grid -->
+    <div class="q46__grid" id="q46Grid">
+      {sapiGroups.map((group, idx) => (
+        <div class="q46__card card reveal" data-type="sapi" style={`animation-delay: ${idx * 0.05}s`}>
+          <div class="q46__card-top">
+            <div class="q46__card-badge">
+              <span class="q46__card-letter">{group.id}</span>
+            </div>
+            <div class="q46__card-info">
+              <h3 class="q46__card-title">🐄 {group.label}</h3>
+              <span class="q46__card-unit">{group.unit}</span>
+            </div>
+            {group.price && (
+              <span class="q46__card-price">{group.price}</span>
+            )}
+          </div>
+          <div class="q46__card-divider"></div>
+          <ol class="q46__member-list">
+            {group.members.map((member) => (
+              <li class="q46__member">
+                <span class="q46__member-check">✅</span>
+                <span class="q46__member-name">{member}</span>
+              </li>
+            ))}
+          </ol>
+          <div class="q46__card-footer">
+            <span class="q46__card-count">{group.members.length}/7 Peserta</span>
+            <div class="q46__progress">
+              <div class="q46__progress-bar" style={`width: ${(group.members.length / 7) * 100}%`}></div>
+            </div>
+            <span class="q46__status-badge">✅ Lunas</span>
+          </div>
+        </div>
+      ))}
+
+      <!-- Kambing Card -->
+      <div class="q46__card q46__card--kambing card reveal" data-type="kambing">
+        <div class="q46__card-top">
+          <div class="q46__card-badge q46__card-badge--kambing">
+            <span class="q46__card-letter">🐐</span>
+          </div>
+          <div class="q46__card-info">
+            <h3 class="q46__card-title">🐐 KAMBING</h3>
+            <span class="q46__card-unit">Kambing Individual</span>
+          </div>
+          <span class="q46__card-count-badge">{kambingMembers.length} peserta</span>
+        </div>
+        <div class="q46__card-divider q46__card-divider--kambing"></div>
+        <ol class="q46__member-list">
+          {kambingMembers.map((member) => (
+            <li class="q46__member">
+              <span class="q46__member-check">✅</span>
+              <span class="q46__member-name">{member}</span>
+            </li>
+          ))}
+        </ol>
+        <div class="q46__card-footer q46__card-footer--kambing">
+          <span class="q46__card-count">{kambingMembers.length} Peserta Kambing</span>
+          <span class="q46__status-badge q46__status-badge--kambing">✅ Lunas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Info -->
+    <div class="q46__payment reveal">
+      <div class="q46__payment-header">
+        <h3>💳 Info Pembayaran</h3>
+        <p>Pembayaran juga bisa melalui transfer</p>
+      </div>
+      <div class="q46__payment-body">
+        <div class="q46__bank-card">
+          <span class="q46__bank-logo">🏦</span>
+          <div class="q46__bank-info">
+            <span class="q46__bank-name">BSI (Bank Syariah Indonesia)</span>
+            <span class="q46__bank-account">7777556589</span>
+            <span class="q46__bank-holder">a.n Masjid Al Hilal</span>
+          </div>
+        </div>
+        <p class="q46__payment-note">
+          📎 Kirimkan bukti transfer ke panitia 🙏
+        </p>
+        <p class="q46__payment-ops">
+          <strong>NB:</strong> Pembayaran qurban <span class="q46__highlight">+Rp.100.000</span> untuk Operasional
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="q46__contact reveal">
+      <h3 class="q46__contact-title">📞 Pendaftaran & Informasi</h3>
+      <div class="q46__contact-grid">
+        {contacts.map((c) => (
+          <a href={`https://wa.me/${c.phone.replace(/[\s\-\+]/g, '')}`} class="q46__contact-card" target="_blank" rel="noopener">
+            <span class="q46__contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </span>
+            <div class="q46__contact-detail">
+              <span class="q46__contact-name">{c.name}</span>
+              <span class="q46__contact-phone">{c.phone}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Hashtags -->
+    <div class="q46__hashtags reveal">
+      <span class="q46__hashtag">#KamiSiap</span>
+      <span class="q46__hashtag">#PanitiaAmanah</span>
+      <span class="q46__hashtag">#LazismuDonorejo</span>
+    </div>
+
+    <!-- CTA to new year -->
+    <div class="q46__cta reveal">
+      <div class="q46__cta-inner">
+        <span class="q46__cta-emoji">🕌</span>
+        <h3 class="q46__cta-title">Qurban 1447H Sudah Dibuka!</h3>
+        <p class="q46__cta-text">Alhamdulillah, program qurban 1446H telah terlaksana dengan baik. Ayo bergabung di program qurban tahun ini!</p>
+        <a href="/" class="btn btn--primary">
+          🐄 Lihat Program 1447H
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Search & Filter functionality for 1446H page
+  const searchInput = document.getElementById('q46Search') as HTMLInputElement;
+  const filterBtns = document.querySelectorAll('.q46__filter-btn');
+  const grid = document.getElementById('q46Grid');
+  const noResults = document.getElementById('q46NoResults');
+  let currentFilter = 'all';
+
+  function applyFilters() {
+    if (!grid || !noResults) return;
+    const query = searchInput?.value.toLowerCase().trim() || '';
+    const cards = grid.querySelectorAll('.q46__card') as NodeListOf<HTMLElement>;
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const type = card.dataset.type || '';
+      const matchesFilter = currentFilter === 'all' || type === currentFilter;
+
+      if (!matchesFilter) {
+        card.style.display = 'none';
+        return;
+      }
+
+      if (!query) {
+        card.style.display = '';
+        visibleCount++;
+        card.querySelectorAll('.q46__member').forEach(m => {
+          (m as HTMLElement).style.display = '';
+        });
+        return;
+      }
+
+      const members = card.querySelectorAll('.q46__member');
+      let cardHasMatch = false;
+      members.forEach(m => {
+        const name = m.querySelector('.q46__member-name')?.textContent?.toLowerCase() || '';
+        if (name.includes(query)) {
+          (m as HTMLElement).style.display = '';
+          cardHasMatch = true;
+        } else {
+          (m as HTMLElement).style.display = 'none';
+        }
+      });
+
+      const title = card.querySelector('.q46__card-title')?.textContent?.toLowerCase() || '';
+      if (title.includes(query)) {
+        cardHasMatch = true;
+        members.forEach(m => {
+          (m as HTMLElement).style.display = '';
+        });
+      }
+
+      card.style.display = cardHasMatch ? '' : 'none';
+      if (cardHasMatch) visibleCount++;
+    });
+
+    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+  }
+
+  searchInput?.addEventListener('input', applyFilters);
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('q46__filter-btn--active'));
+      btn.classList.add('q46__filter-btn--active');
+      currentFilter = (btn as HTMLElement).dataset.filter || 'all';
+      applyFilters();
+    });
+  });
+</script>
+
+<style>
+  .qurban1446 {
+    padding-top: calc(64px + 2rem);
+    padding-bottom: 0;
+    background: var(--bg-base);
+    min-height: 100vh;
+  }
+
+  /* ===== Hero Banner ===== */
+  .q46__hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--green-primary) 0%, #1a5a36 50%, #0d3d24 100%);
+    border-radius: var(--radius-lg);
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .q46__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .q46__hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(196,144,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .q46__hero-badge {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .q46__hero-year-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    background: rgba(196, 144, 42, 0.2);
+    border: 1px solid rgba(196, 144, 42, 0.3);
+    border-radius: var(--radius-full);
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .q46__hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .q46__hero-content .badge {
+    margin-bottom: 1rem;
+  }
+
+  .q46__title {
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
+  }
+
+  .q46__title-emoji {
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .q46__title-emoji:last-child {
+    animation-delay: 1.5s;
+  }
+
+  .q46__subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .q46__hadits {
+    max-width: 560px;
+    margin-inline: auto;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .q46__hadits-text {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .q46__hadits-source {
+    color: rgba(255,255,255,0.45);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .q46__hero-year {
+    position: absolute;
+    bottom: -1rem;
+    right: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(4rem, 12vw, 8rem);
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ===== Stats ===== */
+  .q46__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .q46__stat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .q46__stat-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+
+  .q46__stat-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .q46__stat-number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--green-primary);
+    line-height: 1.1;
+  }
+
+  .q46__stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .q46__stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* ===== Search & Filter ===== */
+  .q46__controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .q46__search {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .q46__search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .q46__search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-full);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    background: var(--bg-card);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .q46__search-input:focus {
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 4px rgba(45, 122, 79, 0.1);
+  }
+
+  .q46__search-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .q46__filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .q46__filter-btn {
+    padding: 0.55rem 1.1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-body);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .q46__filter-btn:hover {
+    background: var(--green-pale);
+    color: var(--green-primary);
+    border-color: var(--green-primary);
+  }
+
+  .q46__filter-btn--active {
+    background: var(--green-primary);
+    color: #fff;
+    border-color: var(--green-primary);
+  }
+
+  .q46__filter-btn--active:hover {
+    background: var(--green-light);
+    color: #fff;
+  }
+
+  /* No Results */
+  .q46__no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .q46__no-results-icon {
+    font-size: 2.5rem;
+    opacity: 0.5;
+  }
+
+  /* ===== Grid ===== */
+  .q46__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ===== Card ===== */
+  .q46__card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .q46__card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .q46__card-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(45, 122, 79, 0.3);
+  }
+
+  .q46__card-badge--kambing {
+    background: linear-gradient(135deg, var(--orange-primary), var(--orange-light));
+    box-shadow: 0 4px 12px rgba(224, 120, 64, 0.3);
+  }
+
+  .q46__card-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .q46__card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .q46__card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-heading);
+    line-height: 1.3;
+  }
+
+  .q46__card-unit {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .q46__card-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--green-primary);
+    background: var(--green-pale);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .q46__card-count-badge {
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--orange-primary);
+    background: var(--orange-pale);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .q46__card-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--green-primary), transparent);
+    opacity: 0.15;
+  }
+
+  .q46__card-divider--kambing {
+    background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
+  }
+
+  /* Member List */
+  .q46__member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    counter-reset: member;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .q46__member {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    counter-increment: member;
+  }
+
+  .q46__member:hover {
+    background: var(--green-pale);
+  }
+
+  .q46__card--kambing .q46__member:hover {
+    background: var(--orange-pale);
+  }
+
+  .q46__member::before {
+    content: counter(member) ".";
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    min-width: 22px;
+    flex-shrink: 0;
+  }
+
+  .q46__member-check {
+    font-size: 0.82rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .q46__member-name {
+    font-size: 0.88rem;
+    color: var(--text-body);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Card Footer */
+  .q46__card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .q46__card-count {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--green-primary);
+    white-space: nowrap;
+  }
+
+  .q46__card-footer--kambing .q46__card-count {
+    color: var(--orange-primary);
+  }
+
+  .q46__progress {
+    flex: 1;
+    height: 6px;
+    background: var(--green-pale);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .q46__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-primary), var(--green-light));
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  .q46__status-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--green-primary);
+    background: var(--green-pale);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  .q46__status-badge--kambing {
+    color: var(--orange-primary);
+    background: var(--orange-pale);
+  }
+
+  /* Kambing Card Span */
+  .q46__card--kambing {
+    grid-column: 1 / -1;
+  }
+
+  .q46__card--kambing .q46__member-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.3rem;
+  }
+
+  /* ===== Payment Info ===== */
+  .q46__payment {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .q46__payment-header {
+    background: linear-gradient(135deg, var(--green-primary), var(--green-light));
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .q46__payment-header h3 {
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .q46__payment-header p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+  }
+
+  .q46__payment-body {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .q46__bank-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-warm);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border);
+    margin-bottom: 1rem;
+  }
+
+  .q46__bank-logo {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .q46__bank-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .q46__bank-name {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .q46__bank-account {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: var(--green-primary);
+    letter-spacing: 0.05em;
+  }
+
+  .q46__bank-holder {
+    font-size: 0.82rem;
+    color: var(--text-body);
+    font-weight: 600;
+  }
+
+  .q46__payment-note {
+    font-size: 0.88rem;
+    color: var(--text-body);
+    margin-bottom: 0.75rem;
+  }
+
+  .q46__payment-ops {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .q46__highlight {
+    color: var(--orange-primary);
+    font-weight: 700;
+    background: var(--orange-pale);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+  }
+
+  /* ===== Contact ===== */
+  .q46__contact {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .q46__contact-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .q46__contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .q46__contact-card {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .q46__contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: #25D366;
+  }
+
+  .q46__contact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .q46__contact-detail {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .q46__contact-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-heading);
+  }
+
+  .q46__contact-phone {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== Hashtags ===== */
+  .q46__hashtags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+
+  .q46__hashtag {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--green-primary);
+    background: var(--green-pale);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .q46__hashtag:hover {
+    background: var(--green-primary);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  /* ===== CTA ===== */
+  .q46__cta {
+    margin-bottom: 3rem;
+  }
+
+  .q46__cta-inner {
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(135deg, var(--bg-warm), var(--green-pale));
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .q46__cta-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(45, 122, 79, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .q46__cta-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .q46__cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .q46__cta-text {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    max-width: 480px;
+    margin-inline: auto;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .q46__grid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .q46__card--kambing .q46__member-list {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .qurban1446 {
+      padding-top: calc(64px + 1rem);
+    }
+
+    .q46__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .q46__stats {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .q46__stat-divider {
+      width: 100%;
+      height: 1px;
+    }
+
+    .q46__controls {
+      flex-direction: column;
+    }
+
+    .q46__search {
+      width: 100%;
+    }
+
+    .q46__filter-group {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .q46__card {
+      padding: 1.25rem;
+    }
+
+    .q46__card-top {
+      flex-wrap: wrap;
+    }
+
+    .q46__card-price {
+      margin-left: auto;
+    }
+
+    .q46__card--kambing .q46__member-list {
+      grid-template-columns: 1fr;
+    }
+
+    .q46__bank-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .q46__bank-info {
+      text-align: center;
+    }
+
+    .q46__contact-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .q46__hadits {
+      padding: 1rem;
+    }
+  }
+</style>

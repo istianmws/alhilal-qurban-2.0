@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Qurban1446 from '../components/Qurban1446.astro';
+import IslamicPattern from '../components/IslamicPattern.astro';
+---
+
+<Layout
+  title="Info Qurban 1446H — Masjid Al-Hilal Donorejo"
+  description="Rekap data peserta qurban Idul Adha 1446H Masjid Al-Hilal Donorejo. 12 ekor sapi dan 7 ekor kambing dengan total 91+ peserta."
+>
+  <!-- Standalone Navbar for this page -->
+  <nav class="navbar navbar--scrolled" id="navbar">
+    <div class="navbar__inner container">
+      <a href="/" class="navbar__logo">☽ Al-Hilal</a>
+      <div class="navbar__right">
+        <a href="/" class="btn btn--secondary navbar__back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Kembali
+        </a>
+        <a href="/#donasi" class="btn btn--primary navbar__cta">Daftar 1447H</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <Qurban1446 />
+
+    <!-- Footer -->
+    <section class="page-footer">
+      <IslamicPattern opacity={0.06} color="#ffffff" />
+      <div class="container page-footer__inner">
+        <p class="page-footer__org">☽ Masjid Al-Hilal Donorejo</p>
+        <p class="page-footer__text">Ranting Muhammadiyah Donorejo · Rekap Qurban Idul Adha 1446H</p>
+        <p class="page-footer__copy">© 2025 Panitia Qurban Al-Hilal · Dibuat dengan ❤️ untuk umat</p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* Page Navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(250, 246, 239, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(45, 122, 79, 0.1);
+    box-shadow: 0 2px 20px rgba(45, 50, 40, 0.1);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: var(--container-max);
+  }
+
+  .navbar__logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--green-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .navbar__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .navbar__back {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.82rem;
+    gap: 0.35rem;
+  }
+
+  .navbar__cta {
+    padding: 0.55rem 1.3rem;
+    font-size: 0.82rem;
+  }
+
+  /* Footer */
+  .page-footer {
+    position: relative;
+    background: linear-gradient(135deg, var(--green-primary), #1a5a36);
+    overflow: hidden;
+  }
+
+  .page-footer__inner {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+
+  .page-footer__org {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.4rem;
+  }
+
+  .page-footer__text {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.82rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-footer__copy {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 600px) {
+    .navbar__cta {
+      display: none;
+    }
+  }
+</style>
